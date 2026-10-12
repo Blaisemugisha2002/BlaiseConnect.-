@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#087f5b">
+  <title>BlaiseConnect</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f8f6;
+      color: #18352c;
+    }
+
+    header {
+      background: #087f5b;
+      color: white;
+      padding: 25px 18px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0 0 10px;
+      font-size: 29px;
+    }
+
+    header p {
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    main {
+      max-width: 600px;
+      margin: auto;
+      padding: 20px 16px;
+    }
+
+    .welcome, .card {
+      background: white;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 8px #0000000d;
+    }
+
+    h2 {
+      color: #087f5b;
+      margin-top: 0;
+    }
+
+    .notice {
+      background: #e0f3e9;
+      padding: 13px;
+      border-radius: 9px;
+      line-height: 1.5;
+    }
+
+    label {
+      display: block;
+      margin: 14px 0 6px;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #b9c9c1;
+      border-radius: 8px;
+      font-size: 16px;
+      background: white;
+    }
+
+    button {
+      width: 100%;
+      border: none;
+      border-radius: 9px;
+      padding: 13px;
+      margin-top: 12px;
+      background: #087f5b;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button.secondary {
+      background: #e0f3e9;
+      color: #075b42;
+    }
+
+    .result {
+      margin-top: 12px;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #53685e;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>BlaiseConnect</h1>
+    <p>Connecting people with humanitarian assistance</p>
+  </header>
+
+  <main>
+
+    <section class="welcome">
+      <h2>Welcome to BlaiseConnect</h2>
+      <p>
+        Find assistance, learn about organizations,
+        and prepare your request for help.
+      </p>
+
+      <div class="notice">
+        <strong>Our mission</strong><br>
+        To help refugees and other people find reliable
+        information about humanitarian services.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>🌍 Find Help</h2>
+      <p>Select your location to begin.</p>
+
+      <label for="country">Country</label>
+      <select id="country">
+        <option value="">Choose your country</option>
+        <option>Kenya</option>
+        <option>Uganda</option>
+        <option>Tanzania</option>
+        <option>Rwanda</option>
+        <option>Burundi</option>
+        <option>South Sudan</option>
+        <option>Other</option>
+      </select>
+
+      <label for="location">Camp, settlement or city</label>
+      <input id="location" placeholder="Enter your location">
+
+      <button onclick="findHelp()">Find Help</button>
+      <div id="helpResult" class="result"></div>
+    </section>
+
+    <section class="card">
+      <h2>📋 My Cases</h2>
+      <p>
+        In a future version, you will be able to follow
+        your requests and read replies from organizations.
+      </p>
+      <p class="notice">
+        This is an early demonstration. No real case
+        has been submitted.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>⚖️ Legal Help</h2>
+      <p>
+        Find information about legal assistance and
+        possible appointments with verified providers.
+      </p>
+      <button class="secondary"
+        onclick="showMessage('Legal assistance information will appear here after verified providers are added.')">
+        Explore Legal Help
+      </button>
+    </section>
+
+    <section class="card">
+      <h2>📢 Organization Announcements</h2>
+      <p>
+        Updates from organizations can appear here
+        when verified partners publish them.
+      </p>
+      <p class="notice">
+        No organizations have been connected yet.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>🔐 Create Account / Login</h2>
+      <p>
+        Account registration and secure login will be
+        added in the next development stage.
+      </p>
+      <p>
+        We will support email or phone number,
+        password, and account recovery.
+      </p>
+    </section>
+
+    <div id="message" class="result" role="status"></div>
+
+  </main>
+
+  <footer>
+    BlaiseConnect · Early Demo · Humanitarian Support
+  </footer>
+
+  <script>
+    function findHelp() {
+      const country = document.getElementById("country").value;
+      const location = document.getElementById("location").value.trim();
+      const result = document.getElementById("helpResult");
+
+      if (!country || !location) {
+        result.textContent =
+          "Please choose your country and enter your location.";
+        return;
+      }
+
+      result.textContent =
+        "Your location: " + location + ", " + country +
+        ". Verified organizations will be listed here when available. " +
+        "This demo has not sent your information anywhere.";
+    }
+
+    function showMessage(message) {
+      document.getElementById("message").textContent = message;
+    }
+  </script>
+
+</body>
+</html>
